@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var Zombie = require("../models/zombie")
-var Cerebro = require("../models/cerebro")
+var Zombie = require("../models/zombie") //Modelo zombie
+var Cerebro = require("../models/cerebro")  //Modelo cerebro
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,22 +10,15 @@ router.get('/', function(req, res, next) {
     if(!error){
       res.render('index', { title: 'Brian',curso:'Programacion c/s',viewZombies: zombies});
     }
-  })
-  
+  });
 });
 
-router.get('/cerebros', function(req, res, next) {
-  Cerebro.find().exec(function(error,cerebros){
-    if(!error){
-      res.render('cerebros/index', { viewCerebros: cerebros});
-    }
-  })
-  
-});
+/*Agregar nuevo zombie */
 router.get('/zombies/add',function(req, res){
   res.render('add',{msg: ''});
 });
 
+/* Guardar zombie en la base de datos*/
 router.post('/zombies/new',function(req, res){
   var data = req.body;
 
@@ -37,11 +30,35 @@ router.post('/zombies/new',function(req, res){
 
   nuevoZombie.save().then(function(){
     res.render('add', {msg: 'Se agrego el zombie con exito!'});
-    
-  });
-  
+  });  
 });
 
+/* get page Cerebros */
+router.get('/cerebros', function(req, res) {
+  Cerebro.find().exec(function(error,cerebros){
+    if(!error){
+      res.render('cerebros/index', { viewCerebros: cerebros});
+    }
+  });
+});
 
+router.get('/cerebros/add',function(req, res){
+  res.render('cerebros/add_cerebros',{obj: ''});
+});
 
+router.post('/cerebros/new', function(req,res){
+  var dato = req.body;
+
+  var nuevoCerebro = new Cerebro({
+    description: dato.description,
+    flavor: dato.flavor,
+    price: dato.price,
+    picture: dato.picture
+  });
+
+  nuevoCerebro.save().then(function(){
+    res.render('cerebros/add_cerebros', {obj: 'Se agrego el cerebro con exito!'});
+  });
+
+});
 module.exports = router;
