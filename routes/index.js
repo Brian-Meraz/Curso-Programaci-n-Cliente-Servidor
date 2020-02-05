@@ -14,23 +14,16 @@ router.get('/', function(req, res, next) {
   
 });
 
-/* Get cerebros page. */
 router.get('/cerebros', function(req, res, next) {
   Cerebro.find().exec(function(error,cerebros){
     if(!error){
       res.render('cerebros/index', { viewCerebros: cerebros});
     }
-  })  
+  })
+  
 });
-/* Add new cerebros */
-router.get('/cerebros/add',function(req, res){
-  res.render('add_cerebros',{obj:''});
-});
-
-
-/* Add new zombie. */
 router.get('/zombies/add',function(req, res){
-  res.render('add',{msg:''});
+  res.render('add',{msg: ''});
 });
 
 router.post('/zombies/new',function(req, res){
@@ -43,9 +36,10 @@ router.post('/zombies/new',function(req, res){
   });
 
   nuevoZombie.save().then(function(){
-    res.render('add', {msg: '<div role="alert" class="alert alert-success">Se agrego el zombie con exito!</div>'});
+    res.render('add', {msg: 'Se agrego el zombie con exito!'});
     
-  });  
+  });
+  
 });
 
 
