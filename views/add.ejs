@@ -1,13 +1,15 @@
 <% include _header %>
 <div class="row container">
     <div class="col-md-12">  
-        <%
-            if(msg){
-                %>
-                <div role="alert" class="alert alert-success"><%= msg %></div>
-                <%
-            }
+        <% 
+            if(!(typeof (msg) == 'undefined')){
         %>
+                <div role="alert" class="alert alert-success">
+                    <%= msg %>
+                </div> 
+        <% 
+            }
+        %>     
 
         <form action="new" method="POST">
             <div class="form-group">
@@ -22,6 +24,16 @@
                 <label for="">Tipo</label>
                 <input type="text" class="form-control" name="type">
             </div>
+            <%
+            if(!(typeof (mensajeError) == 'undefined')){
+            %>
+                <div role="alert" class="alert alert-danger">
+                    <%= mensajeError %>
+                </div>
+                <% 
+            }
+            %>
+            
             <button class="btn btn-primary">Nuevo Zombie</button>
         </form>
     </div>

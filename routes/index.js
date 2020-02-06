@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 /*Agregar nuevo zombie */
 router.get('/zombies/add',function(req, res){
-  res.render('add',{msg: ''});
+  res.render('add');
 });
 
 /* Guardar zombie en la base de datos*/
@@ -28,8 +28,15 @@ router.post('/zombies/new',function(req, res){
     type: data.type
   });
 
-  nuevoZombie.save().then(function(){
-    res.render('add', {msg: 'Se agrego el zombie con exito!'});
+  nuevoZombie.save(function(error){
+    if(error){
+      mensaje = error.errors.name.message;
+      res.render('add', {mensajeError: mensaje})
+    }
+    else{
+      res.render('add', {msg: 'Se agrego el zombie con exito!'});
+    }
+    
   });  
 });
 
@@ -46,6 +53,7 @@ router.get('/cerebros/add',function(req, res){
   res.render('cerebros/add_cerebros',{obj: ''});
 });
 
+/* Guardar nuevo cerebro */
 router.post('/cerebros/new', function(req,res){
   var dato = req.body;
 
@@ -61,4 +69,8 @@ router.post('/cerebros/new', function(req,res){
   });
 
 });
+
+/* Eliminar cerebro */
+
+/* Modificar cerebro */
 module.exports = router;

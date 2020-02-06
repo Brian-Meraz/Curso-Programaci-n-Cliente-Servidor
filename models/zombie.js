@@ -8,8 +8,8 @@ var mongoose = require('mongoose');
 var modelSchema = mongoose.Schema({
     name: {
         type: String,
-        min: [6,"El nombre es muy corto"],
-        max: [20,"El nombre es muy largo"],
+        minlength: [6,"El nombre es muy corto"],
+        maxlength: [20,"El nombre es muy largo"],
         required: [true, 'Este campo es obligatorio']
     },
     email: {
@@ -23,8 +23,9 @@ var modelSchema = mongoose.Schema({
     
     type: {
         type: String,
-        min: [6,"El tipo de zombie ingresado contiene menos de 6 letras"],
-        max: [50,"El tipo de zombie ingresado contiene mas de 50 letras"],
+        enum: ['Alumno','Maestro'],
+        //minlength: [6,"El tipo de zombie ingresado contiene menos de 6 letras"],
+        //maxlength: [50,"El tipo de zombie ingresado contiene mas de 50 letras"],
         required: [true, 'Este campo es obligatorio']
     }
 });
