@@ -47,4 +47,27 @@ router.post('/zombies/new',function(req, res){
   });  
 });
 
+// Modificar zombies
+router.get('/zombies/edit/:id',async function(req, res){
+  var zombie = await Zombie.findById(req.params.id);
+  res.render('edit', {zombie, zombie});
+});
+
+router.put('/zombies/edit/:id',async function(req, res){
+  try{
+  var zombie = await Zombie.findById(req.params.id);
+  zombie.name = req.body.name;
+  zombie.email = req.body.email;
+  zombie.type = req.body.type;
+
+  await zombie.save();
+  res.redirect('/');
+  }
+  catch(e){
+    res.render('edit',{zombie: zombie});
+  }
+});
+
+
+
 module.exports = router;
