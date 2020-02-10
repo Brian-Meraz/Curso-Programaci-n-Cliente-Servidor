@@ -5,25 +5,23 @@ var modelSchema = mongoose.Schema({
         type: String,
         minlength: [10, 'La descripcion es muy corta'],
         maxlength: [50, 'La descripcion es muy larga'],
-        required: [true, 'Este campo es obligatorio!']
+        required: [true, 'El campo descripción es obligatorio!']
     },
     flavor: {
         type: String,
-        minlength: [3, 'El tipo de sabor es muy corto'],
-        maxlength: [20, 'El tipo de sabor es muy largo'],
-        required: [true, 'Este campo es obligatorio']
+        enum: ['Fresa','Chocolate','Vainilla','Pistache','fresa','chocolate','vainilla','pistache']
     },
     price: {
         type: String,
-        minlength: [1, 'El precio es muy chico'],
+        minlength: [2, 'El precio es muy chico'],
         maxlength: [10, 'El precio es demasiado caro'],
-        required: [true, 'Este campo es obligatorio']
+        required: [true, 'El campo precio es obligatorio']
     },
     picture: {
         type: String,
-        minlength: [0,'!!!!!'],
+        minlength: [0,'Introduce un texto xd'],
         maxlength: [100, 'Demasiados caracteres!'],
-        required: [true, 'Este campo es obligatorio']
+        required: [true, 'El campo Imagen es obligatorio']
     }
 });
 

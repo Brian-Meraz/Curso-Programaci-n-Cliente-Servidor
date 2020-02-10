@@ -8,6 +8,7 @@
     "serverstart": "DEBUG-generador.* npm run devstart"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "bootstrap": "^4.4.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

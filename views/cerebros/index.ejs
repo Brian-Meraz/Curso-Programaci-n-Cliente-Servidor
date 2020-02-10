@@ -1,21 +1,34 @@
 <% include _h %>
-    <p>
+    <div class="container">
         <table class="table table-striped">
           <tr>
             <th>Descripción</th>
             <th>Sabor</th>
             <th>Precio</th>
             <th>Imagen</th>
+            <th></th>
           </tr>
           <%
             if(viewCerebros){
               viewCerebros.forEach(function(cerebro){
                 %>
                 <tr>
-                  <td><%= cerebro.description %></td>
-                  <td><%= cerebro.flavor %></td>
-                  <td><%= cerebro.price %></td>
-                  <td><%= cerebro.picture %></td>
+                  <td>
+                    <%= cerebro.description %>
+                  </td>
+                  <td>
+                    <%= cerebro.flavor %>
+                  </td>
+                  <td>
+                    <%= cerebro.price %>
+                  </td>
+                  <td>
+                    <%= cerebro.picture %>
+                  </td>
+                  <td>
+                    <i class="fas fa-edit" title="Actualizar"></i>
+                    <i class="fas fa-trash" title="Eliminar"></i>
+                  </td>
                 </tr>
                 <%
               });
@@ -23,5 +36,5 @@
           %>
         </table>
   
-      </p>
+      </div>
 <% include _f %>

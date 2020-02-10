@@ -1,4 +1,5 @@
 <% include _header %>
+  <div class="container">
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <p><%= curso %></p>
@@ -8,22 +9,32 @@
           <th>Nombre</th>
           <th>Email</th>
           <th>Tipo</th>
+          <th></th>
         </tr>
         <%
           if(viewZombies){
             viewZombies.forEach(function(zombie){
               %>
               <tr>
-                <td><%= zombie.name %></td>
-                <td><%= zombie.email %></td>
-                <td><%= zombie.type %></td>
+                <td>
+                  <%= zombie.name %>
+                </td>
+                <td>
+                  <%= zombie.email %>
+                </td>
+                <td>
+                  <%= zombie.type %>
+                </td>
+                <td>
+                  <i class="fas fa-edit" title="Actualizar"></i>
+                  <i class="fas fa-trash" title="Eliminar"></i>
+                </td>
               </tr>
               <%
             });
           }
         %>
       </table>
-
     </p>
-
+  </div>  
 <% include _footer %>
